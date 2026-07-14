@@ -1,36 +1,24 @@
-import notes from '../../data/notes.js';
+import Note from '../../data/note.js'
 
-export function getAll() {
-  return notes;
+export async function getAll() {
+  return await Note.find()
 }
 
-export function getById(id) {
-  return notes.find((n) => n.id === Number(id));
+export async function getById(id) {
+  return await Note.findById(id)
 }
 
-export function create(title, body, category) {
-  const newNote = {
-    id: Date.now(),
-    title,
-    body,
-    category: category || "Personal",
-  };
-  notes.push(newNote);
-  return newNote;
+export async function create(title, content, category) {
+  return await Note.create({ title, content, category })
 }
 
-export function update(id, data) {
-  const note = notes.find((n) => n.id === Number(id));
-  if (!note) return null;
-  if (data.title !== undefined) note.title = data.title;
-  if (data.body !== undefined) note.body = data.body;
-  if (data.category !== undefined) note.category = data.category;
-  return note;
+export async function update(id, data) {
+  return await Note.findByIdAndUpdate(id, data, {
+    new: true,
+    runValidators: true,
+  })
 }
 
-export function remove(id) {
-  const index = notes.findIndex((n) => n.id === Number(id));
-  if (index === -1) return false;
-  notes.splice(index, 1);
-  return true;
+export async function remove(id) {
+  return await Note.findByIdAndDelete(id)
 }
