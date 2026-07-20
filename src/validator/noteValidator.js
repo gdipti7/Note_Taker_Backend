@@ -10,22 +10,22 @@ export const noteRules = [
     .isLength({ min: 3 })
     .withMessage('Title must be at least 3 characters'),
 
-  body('body')
+  body('content')
     .notEmpty()
-    .withMessage('Note body is required')
+    .withMessage('Note content is required')
     .isString()
-    .withMessage('Note body must be a string')
+    .withMessage('Content must be a string')
     .trim()
     .isLength({ min: 5 })
-    .withMessage('Note body must be at least 5 characters'),
+    .withMessage('Content must be at least 5 characters'),
 
   body('category')
     .optional()
     .isString()
     .withMessage('Category must be a string')
     .trim()
-    .isIn(['Personal', 'Work', 'Study'])
-    .withMessage('Category must be Personal, Work, or Study'),
+    .isIn(['Personal', 'Work', 'Study', 'Health'])
+    .withMessage('Category must be Personal, Work, Study, or Health'),
 ]
 
 export const noteUpdateRules = [
@@ -37,21 +37,21 @@ export const noteUpdateRules = [
     .isLength({ min: 3 })
     .withMessage('Title must be at least 3 characters'),
 
-  body('body')
+  body('content')
     .optional()
     .isString()
-    .withMessage('Note body must be a string')
+    .withMessage('Content must be a string')
     .trim()
     .isLength({ min: 5 })
-    .withMessage('Note body must be at least 5 characters'),
+    .withMessage('Content must be at least 5 characters'),
 
   body('category')
     .optional()
     .isString()
     .withMessage('Category must be a string')
     .trim()
-    .isIn(['Personal', 'Work', 'Study'])
-    .withMessage('Category must be Personal, Work, or Study'),
+    .isIn(['Personal', 'Work', 'Study', 'Health'])
+    .withMessage('Category must be Personal, Work, Study, or Health'),
 ]
 
 export function validateNote(req, res, next) {
