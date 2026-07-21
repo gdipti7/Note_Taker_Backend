@@ -7,13 +7,14 @@ import {
   deleteNote,
 } from '../controllers/noteController.js'
 import { noteRules, noteUpdateRules, validateNote } from '../validator/noteValidator.js'
+import verifyToken from '../middleware/verifyToken.js'
 
 const router = express.Router()
 
 router.get('/', getAllNotes)
 router.get('/:id', getNoteById)
-router.post('/', noteRules, validateNote, createNote)
-router.put('/:id', noteUpdateRules, validateNote, updateNote)
-router.delete('/:id', deleteNote)
+router.post('/', verifyToken, noteRules, validateNote, createNote)   // ← protect भयो
+router.put('/:id', verifyToken, noteUpdateRules, validateNote, updateNote)
+router.delete('/:id', verifyToken, deleteNote)
 
 export default router
