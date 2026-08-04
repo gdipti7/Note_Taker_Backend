@@ -3,6 +3,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import noteRoutes from './routes/noteRoutes.js'
 import authRoutes from './routes/authRoutes.js'
+import aiRoutes from './routes/aiRoutes.js'
 
 const app = express()
 
@@ -25,5 +26,6 @@ app.use(cookieParser())
 
 app.use('/auth', authRoutes)
 app.use('/api/notes', noteRoutes)
+app.use('/api/ai', aiRoutes)
 
 export default app
