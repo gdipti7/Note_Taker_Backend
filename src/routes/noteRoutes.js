@@ -13,7 +13,7 @@ const router = express.Router()
 
 router.get('/', getAllNotes)
 router.get('/:id', getNoteById)
-router.post('/', verifyToken, noteRules, validateNote, createNote)   // ← protect भयो
+router.post('/', verifyToken, noteRules, validateNote, createNote) 
 router.put('/:id', verifyToken, noteUpdateRules, validateNote, updateNote)
 router.delete('/:id', verifyToken, deleteNote)
 
